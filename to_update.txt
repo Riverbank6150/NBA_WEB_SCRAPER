@@ -1,0 +1,5 @@
+Improving the Algorithm
+Extracting more tables
+Outputting to Different Formats
+Command Line Interface
+Plotting the Results
