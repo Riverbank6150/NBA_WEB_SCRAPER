@@ -1,0 +1,8 @@
+/.idea/
+*.html
+*.json
+*.csv
+*.xls
+*.xlsx
+*.txt
+*.parquet
