@@ -1,4 +1,9 @@
+/venv/
+/venv
+
 /.idea/
+/.idea
+
 *.html
 *.json
 *.csv
