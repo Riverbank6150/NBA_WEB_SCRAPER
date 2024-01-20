@@ -4,10 +4,10 @@ import requests
 import bs4
 
 
-def scrape_URL(URL):
+def scrape_URL(url):
     # URL = "https://www.basketball-reference.com/leagues/NBA_2023_per_game.html"
 
-    page = requests.get(URL)
+    page = requests.get(url)
 
     filename = 'NBA_2023_per_game_stats_alphabetical.html'
 
