@@ -20,6 +20,11 @@ def scrape_URL(url):
 
 
 def parse(soup):
+
+    # check with Mikey, made 'titles' and 'stats' global variables. Don't know how to call in a different way
+    global titles
+    global stats
+
     table = soup.find("table", id="per_game_stats")
     # find('tr') to find the first row, findAll('th') to find all column headers. If no findAll.('th'), newline characters given in between the column headers list.
     columns = table.find('tr').findAll('th')
