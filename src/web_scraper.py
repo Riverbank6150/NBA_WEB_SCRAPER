@@ -3,6 +3,7 @@ import csv
 import bs4
 import pandas as pd
 import requests
+import pyarrow
 
 
 def scrape_URL(url):
@@ -10,7 +11,7 @@ def scrape_URL(url):
 
     page = requests.get(url)
 
-    filename = 'NBA_2023_per_game_stats_alphabetical.html'
+    filename = 'nba_2023_per_game_stats_alphabetical.html'
 
     with open(filename, "w", encoding='utf-8') as f:
         f.write(page.text)
@@ -63,17 +64,23 @@ def parse(soup):
 # What we want, each player having their stats in their own list within the large list of all the players
 # print(stats)
 
-def print_to_CSV():
-    with open('NBA_2023_per_game_stats_alphabetical.csv', 'w', newline='', encoding='utf-8') as f:
+def print_to_csv():
+    with open('nba_2023_per_game_stats_alphabetical.csv', 'w', newline='', encoding='utf-8') as f:
         w = csv.writer(f)
         w.writerow(titles)
         w.writerows(stats)
 
 
-def print_to_JSON():
-    with open('NBA_2023_per_game_stats_alphabetical.json', 'w', newline='', encoding='utf-8') as f:
+def print_to_json():
+    with open('nba_2023_per_game_stats_alphabetical.json', 'w', newline='', encoding='utf-8') as f:
         f.write(dataframe.to_json(orient="records", lines=True))
 
 
 def print_to_xlsx():
-    dataframe.to_excel('NBA_2023_per_game_stats_alphabetical.xlsx', index=False)
+    dataframe.to_excel('nba_2023_per_game_stats_alphabetical.xlsx', index=False)
+
+
+def print_to_parquet():
+    dataframe.to_parquet('nba_2023_per_game_stats_alphabetical.parquet.gzip', compression='gzip')
+    dataframe.to_parquet('nba_2023_per_game_stats_alphabetical.parquet', compression='gzip')
+    # dataframe.read_parquet('nba_2023_per_game_stats_alphabetical.parquet.gzip')
