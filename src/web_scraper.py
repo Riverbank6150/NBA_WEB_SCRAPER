@@ -59,6 +59,7 @@ def parse(soup):
 
     dataframe = pd.DataFrame(stats, columns=titles)
 
+
 # What we want, each player having their stats in their own list within the large list of all the players
 # print(stats)
 
@@ -67,6 +68,7 @@ def print_to_CSV():
         w = csv.writer(f)
         w.writerow(titles)
         w.writerows(stats)
+
 
 def print_to_JSON():
     with open('NBA_2023_per_game_stats_alphabetical.json', 'w', newline='', encoding='utf-8') as f:
