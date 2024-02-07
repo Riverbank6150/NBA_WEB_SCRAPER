@@ -6,9 +6,10 @@ def main():
     soup = scrape_URL(url)
     parse(soup)
 
-    print_to_CSV()
-    print_to_JSON()
+    print_to_csv()
+    print_to_json()
     print_to_xlsx()
+    print_to_parquet()
 
 
 if __name__ == "__main__":
