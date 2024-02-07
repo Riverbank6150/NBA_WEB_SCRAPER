@@ -1,7 +1,8 @@
 import csv
 
-import requests
 import bs4
+import pandas as pd
+import requests
 
 
 def scrape_URL(url):
@@ -20,10 +21,10 @@ def scrape_URL(url):
 
 
 def parse(soup):
-
     # check with Mikey, made 'titles' and 'stats' global variables. Don't know how to call in a different way
     global titles
     global stats
+    global dataframe
 
     table = soup.find("table", id="per_game_stats")
     # find('tr') to find the first row, findAll('th') to find all column headers. If no findAll.('th'), newline characters given in between the column headers list.
@@ -56,13 +57,23 @@ def parse(soup):
             # Add the temporary list to the master list of all data cells
             stats.append(player_row)
 
+    dataframe = pd.DataFrame(stats, columns=titles)
+
 
 # What we want, each player having their stats in their own list within the large list of all the players
 # print(stats)
-# for stat in stats:
-# print(stat)
+
 def print_to_CSV():
     with open('NBA_2023_per_game_stats_alphabetical.csv', 'w', newline='', encoding='utf-8') as f:
         w = csv.writer(f)
         w.writerow(titles)
         w.writerows(stats)
+
+
+def print_to_JSON():
+    with open('NBA_2023_per_game_stats_alphabetical.json', 'w', newline='', encoding='utf-8') as f:
+        f.write(dataframe.to_json(orient="records", lines=True))
+
+
+def print_to_xlsx():
+    dataframe.to_excel('NBA_2023_per_game_stats_alphabetical.xlsx', index=False)
