@@ -81,6 +81,4 @@ def print_to_xlsx():
 
 
 def print_to_parquet():
-    dataframe.to_parquet('nba_2023_per_game_stats_alphabetical.parquet.gzip', compression='gzip')
     dataframe.to_parquet('nba_2023_per_game_stats_alphabetical.parquet', compression='gzip')
-    # dataframe.read_parquet('nba_2023_per_game_stats_alphabetical.parquet.gzip')
